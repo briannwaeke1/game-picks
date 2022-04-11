@@ -1,12 +1,12 @@
 import '../styles/globals.css';
-import Nav from '../Components/Nav';
+import { AuthProvider } from '../lib/auth';
+import { supabase } from '../lib/client';
 
 function MyApp({ Component, pageProps }) {
 	return (
-		<div>
-			<Nav />
+		<AuthProvider supabase={supabase}>
 			<Component {...pageProps} />
-		</div>
+		</AuthProvider>
 	);
 }
 
