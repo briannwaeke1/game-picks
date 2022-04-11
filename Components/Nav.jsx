@@ -11,25 +11,24 @@ export default function Nav() {
 					<div className='flex-1 flex items-center justify-center sm:items-stretch sm:justify-start'>
 						<div className='hidden sm:block sm:ml-6'>
 							<div className='flex space-x-4'>
-								<h4 className='flex items-center text-2xl font-bold font-black text-green-400'>
-									DudePicks
-								</h4>
-
+								<Link href='/'>
+									<a className='flex items-center text-2xl font-bold font-black text-green-400'>
+										GamePicks
+									</a>
+								</Link>
 								<Link href='/games'>
 									<a className='text-white hover:bg-white hover:text-black px-3 py-2 rounded-sm font-medium hover:outline'>
 										Games
 									</a>
 								</Link>
-
 								<Link href='/profile'>
 									<a className='text-white hover:bg-white hover:text-black px-3 py-2 rounded-sm font-medium hover:outline'>
 										Profile
 									</a>
 								</Link>
-
 								<div className='flex space-x-2 origin-top-right absolute right-0 h-9'>
 									{!user && (
-										<button className='w-24 rounded-sm  py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline- hover:text-white hover:bg-black hover:outline font-medium'>
+										<button className='w-24 rounded-sm  py-1 ring-1 ring-white outline text-white  ring-opacity-5 focus:outline- hover:text-black hover:bg-white hover:outline font-medium'>
 											<Link href='/'>Sign In</Link>
 										</button>
 									)}

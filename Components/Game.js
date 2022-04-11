@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Details from './Details';
 
 export default function Game(props) {
 	const [userPick, setUserPick] = useState(null);
@@ -20,28 +21,49 @@ export default function Game(props) {
 		}
 	};
 	return (
-		<div className='border rounded-lg p-12 w-4/12 mx-auto my-48'>
-			<p key={props.game.GameID}>{props.game.GameID}</p>
-			<p>
+		<div className='p-4 max-w-sm bg-white rounded-lg border shadow-md m-10 sm:p-8'>
+			<h5 key={props.game.GameID} className='mb-2 text-xl font-bold text-black'>
 				{props.game.AwayTeam} @ {props.game.HomeTeam}
-			</p>
-			{renderUserSelection()}
-			<button
-				variant='primary'
-				onClick={changeUserPick}
-				name={`${props.game.AwayTeam}`}
-				className='w-25 px-3 block'
-			>
-				{props.game.AwayTeam}
-			</button>{' '}
-			<button
-				variant='primary'
-				onClick={changeUserPick}
-				name={`${props.game.HomeTeam}`}
-				className='w-25 px-3 block'
-			>
-				{props.game.HomeTeam}
-			</button>
+			</h5>
+			<div className='flex items-baseline text-gray-900 dark:text-white'>
+				<span className='text-3xl font-semibold'>
+					{props.game.AwayTeamScore} : {props.game.HomeTeamScore}
+				</span>
+			</div>
+			<Details
+				key={props.game.GameID}
+				game={props.game}
+				status={props.game.Status}
+			/>
+			<ul role='list' className='my-7 space-y-5'>
+				<li className='flex space-x-3'>
+					<p className='lh-lg'>Point Spread: {props.game.PointSpread}</p>
+				</li>
+			</ul>
+			<div className='py-3'>{renderUserSelection()}</div>
+			<div className='space-x-3'>
+				<button
+					variant='primary'
+					type='button'
+					className='rounded border-2 border-green-400 bg-white px-8 py-2 font-bold text-black hover:bg-green-400 hover:text-black focus:bg-green-400 focus:text-black'
+					onClick={changeUserPick}
+					userpick={userPick}
+					name={`${props.game.AwayTeam}`}
+				>
+					{props.game.AwayTeam}
+				</button>{' '}
+				<button
+					variant='primary'
+					size='md'
+					onClick={changeUserPick}
+					userpick={userPick}
+					name={`${props.game.HomeTeam}`}
+					type='button'
+					className='rounded border-2 border-green-400 bg-white px-8 py-2 font-bold text-black hover:bg-green-400 hover:text-black focus:bg-green-400 focus:text-black'
+				>
+					{props.game.HomeTeam}
+				</button>
+			</div>
 		</div>
 	);
 }

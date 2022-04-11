@@ -6,7 +6,7 @@ const Schedule = ({ changeUserPick }) => {
 
 	useEffect(() => {
 		fetch(
-			'https://api.sportsdata.io/v3/nba/scores/json/GamesByDate/Today?key=ce1cea60fa674f5ebb95719e856f2b47'
+			'https://api.sportsdata.io/v3/nba/scores/json/GamesByDate/2022-APR-12?key=ce1cea60fa674f5ebb95719e856f2b47'
 		)
 			.then(response => response.json())
 			.then(games => setSchedule(games));
