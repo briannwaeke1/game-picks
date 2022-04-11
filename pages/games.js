@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Auth, Button, Typography } from '@supabase/ui';
 import Nav from '../Components/Nav';
+import Schedule from '../Components/Schedule';
 
 export default function Games() {
 	return (
@@ -10,6 +11,7 @@ export default function Games() {
 			<code className='highlight flex items-center justify-center  w-full'>
 				Sun Apr 10, 2022
 			</code>
+			<Schedule />
 		</div>
 	);
 }

@@ -2,15 +2,6 @@ import Link from 'next/link';
 import { useAuth } from '../lib/auth';
 import { Auth, Button, Typography } from '@supabase/ui';
 
-const navigation = [
-	{ name: 'Games', href: '/games', current: true },
-	{ name: 'Profile', href: '/profile', current: false }
-];
-
-function classNames(...classes) {
-	return classes.filter(Boolean).join(' ');
-}
-
 export default function Nav() {
 	const { user, view, signOut } = useAuth();
 	return (
@@ -23,21 +14,19 @@ export default function Nav() {
 								<h4 className='flex items-center text-2xl font-bold font-black text-green-400'>
 									DudePicks
 								</h4>
-								{navigation.map(item => (
-									<a
-										key={item.name}
-										href={item.href}
-										className={classNames(
-											item.current
-												? 'bg-white text-black'
-												: 'text-white hover:bg-white hover:text-black  ',
-											'px-3 py-2 rounded-sm font-medium hover:outline'
-										)}
-										aria-current={item.current ? 'page' : undefined}
-									>
-										{item.name}
+
+								<Link href='/games'>
+									<a className='text-white hover:bg-white hover:text-black px-3 py-2 rounded-sm font-medium hover:outline'>
+										Games
 									</a>
-								))}
+								</Link>
+
+								<Link href='/profile'>
+									<a className='text-white hover:bg-white hover:text-black px-3 py-2 rounded-sm font-medium hover:outline'>
+										Profile
+									</a>
+								</Link>
+
 								<div className='flex space-x-2 origin-top-right absolute right-0 h-9'>
 									{!user && (
 										<button className='w-24 rounded-sm  py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline- hover:text-white hover:bg-black hover:outline font-medium'>
