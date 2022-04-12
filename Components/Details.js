@@ -17,7 +17,6 @@ export default function Details(props) {
 			{toggle && (
 				<div
 					id='small-modal'
-					key={props.game.GameID}
 					tabindex='-1'
 					className='overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full'
 				>
@@ -25,7 +24,7 @@ export default function Details(props) {
 						<div className='relative bg-black rounded-lg shadow text-white'>
 							<div className='flex justify-between items-center p-5 rounded-t border-b dark:border-gray-600'>
 								<h3 className='text-xl font-medium text-white'>
-									{props.game.AwayTeam} @ {props.game.HomeTeam}
+									Bookmakers Odds
 								</h3>
 								<button
 									type='button'
@@ -49,7 +48,9 @@ export default function Details(props) {
 							</div>
 
 							<div className='p-6 space-y-6'>
-								<p className='text-base leading-relaxed text-white '>Details</p>
+								<p className='text-base leading-relaxed text-white'>
+									{props.game.bookmakers.title}
+								</p>
 								<p className='text-base leading-relaxed text-white'>Details</p>
 							</div>
 

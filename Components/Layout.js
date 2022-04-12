@@ -10,7 +10,6 @@ export default function Layout({ children }) {
 					<title>GamePicks</title>
 					<link rel='icon' href='/favicon.ico' />
 				</Head>
-
 				<main className='flex flex-col items-center justify-center flex-1 w-full px-8 text-center sm:px-20'>
 					<div className='inline-flex flex-col w-full max-w-sm mt-8 space-y-8'>
 						{children}

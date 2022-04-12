@@ -4,7 +4,7 @@
 
 @layer base {
 	h2 {
-		@apply py-4 text-4xl font-black text-gray-800;
+		@apply pt-4 pb-2 text-4xl font-black text-gray-800;
 	}
 
 	.button {
