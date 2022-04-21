@@ -1,7 +1,5 @@
-import Link from 'next/link';
-import { Auth, Button, Typography } from '@supabase/ui';
 import { useAuth } from '../lib/auth';
-import Layout from '../components/Layout';
+import Layout from '../Components/Layout';
 
 export default function Profile() {
 	const { user } = useAuth();

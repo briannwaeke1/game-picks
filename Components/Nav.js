@@ -13,17 +13,22 @@ export default function Nav() {
 							<div className='flex space-x-4'>
 								<Link href='/'>
 									<a className='flex items-center text-2xl font-bold font-black text-green-400'>
-										GamePicks
+										Game<span className='text-white'>Picks</span>
 									</a>
 								</Link>
 								<Link href='/games'>
-									<a className='text-white hover:bg-white hover:text-black px-3 py-2 rounded-sm font-medium hover:outline'>
+									<a className='text-white hover:bg-black hover:text-white px-3 py-2 rounded-sm font-medium hover:outline'>
 										Games
 									</a>
 								</Link>
+								<Link href='/leaderboard'>
+									<a className='text-white hover:bg-black hover:text-white px-3 py-2 rounded-sm font-medium hover:outline'>
+										Leaderboard
+									</a>
+								</Link>
 								<Link href='/profile'>
-									<a className='text-white hover:bg-white hover:text-black px-3 py-2 rounded-sm font-medium hover:outline'>
-										Profile
+									<a className='text-white hover:bg-black hover:text-white px-3 py-2 rounded-sm font-medium hover:outline'>
+										My Account
 									</a>
 								</Link>
 								<div className='flex space-x-2 origin-top-right absolute right-0 h-9'>
@@ -36,9 +41,7 @@ export default function Nav() {
 									{user && (
 										<div className='flex space-x-8  right-0 h-9'>
 											<div className='flex items-center'>
-												<Typography.Text type='success'>
-													Signed in: {user.email}
-												</Typography.Text>
+												<p className=' text-white'>Signed in: {user.email}</p>
 											</div>
 											<button
 												type='button'

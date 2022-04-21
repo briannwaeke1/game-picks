@@ -4,7 +4,9 @@ import Nav from './Nav';
 export default function Layout({ children }) {
 	return (
 		<div>
-			<Nav />
+			<div className='sticky top-0'>
+				<Nav />
+			</div>
 			<div className='flex flex-col items-center justify-center min-h-screen py-2'>
 				<Head>
 					<title>GamePicks</title>
