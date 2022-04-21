@@ -26,4 +26,18 @@
 	.highlight {
 		@apply ml-1 rounded-lg bg-gray-100 p-2 font-mono;
 	}
+
+	.main {
+		max-height: 100vh;
+		height: 100vh;
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+	}
+
+	.Messages {
+		overflow: auto;
+		display: flex;
+		flex-direction: column-reverse;
+	}
 }

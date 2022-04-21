@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useAuth } from '../lib/auth';
-import { Typography } from '@supabase/ui';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 export default function Nav() {
 	const { user, view, signOut } = useAuth();
@@ -26,11 +26,12 @@ export default function Nav() {
 										Leaderboard
 									</a>
 								</Link>
-								<Link href='/profile'>
+								<Link href='/channels.[id]'>
 									<a className='text-white hover:bg-black hover:text-white px-3 py-2 rounded-sm font-medium hover:outline'>
-										My Account
+										Chat
 									</a>
 								</Link>
+
 								<div className='flex space-x-2 origin-top-right absolute right-0 h-9'>
 									{!user && (
 										<button className='w-24 rounded-sm  py-1 ring-1 ring-white outline text-white  ring-opacity-5 focus:outline- hover:text-black hover:bg-white hover:outline font-medium'>
@@ -40,8 +41,22 @@ export default function Nav() {
 
 									{user && (
 										<div className='flex space-x-8  right-0 h-9'>
-											<div className='flex items-center'>
-												<p className=' text-white'>Signed in: {user.email}</p>
+											 
+											<div className='relative w-10 h-10 overflow-hidden rounded-full ring-white ring-1 bg-green-400'>
+												<Link href='/profile'>
+													<svg
+														className='absolute w-12 h-12 text-black -left-1'
+														fill='currentColor'
+														viewBox='0 0 20 20'
+														xmlns='http://www.w3.org/2000/svg'
+													>
+														<path
+															fill-rule='evenodd'
+															d='M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z'
+															clip-rule='evenodd'
+														></path>
+													</svg>
+												</Link>
 											</div>
 											<button
 												type='button'
