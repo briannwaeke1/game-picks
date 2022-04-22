@@ -28,15 +28,15 @@ export default function Games() {
 			<div className='sticky top-0'>
 				<Nav />
 			</div>
-			<div className='inline-flex flex-col w-full mt-8 space-y-4 items-center'>
-				<h2 className='text-center'>Upcoming Games</h2>
+			<div className='inline-flex flex-col w-full mt-8 space-y-6 items-center'>
+				<h2 className='text-center'>Scheduled Games</h2>
 				{data
 					? data.map(game => {
 							return (
-								<div className='grid'>
+								<div>
 									<div key={game.GameID}>
 										<div className='rounded-lg border shadow-xl p-10 max-w-2xl'>
-											<h4 className='pt-4 text-xl font-black text-black'>
+											<h4 className='pt-2 text-xl font-black text-black'>
 												{game.AwayTeam} @ {game.HomeTeam}
 											</h4>
 											<p className=' max-w-2xl text-sm text-gray-500 pb-8'>
@@ -74,7 +74,7 @@ export default function Games() {
 																	onClick={handlePick}
 																	name={`${game.AwayTeam} (${game.AwayTeamMoneyLine})`}
 																	type='button'
-																	className='w-32 h-10 rounded border-2 border-green-400 bg-white px-8 py-2 font-bold text-black hover:bg-green-400 hover:text-black focus:bg-green-400 focus:text-black'
+																	className='w-32 h-10 rounded border-2 border-green-400 bg-white px-8 py-2 font-bold text-black hover:bg-green-400 hover:text-black focus:bg-green-400 focus:text-black ease-linear transition-all duration-150'
 																>
 																	{game.AwayTeamMoneyLine}
 																</button>
@@ -84,7 +84,7 @@ export default function Games() {
 																	onClick={handlePick}
 																	name={`${game.AwayTeam} (${game.PointSpread})`}
 																	type='button'
-																	className='w-32 h-10 rounded border-2 border-green-400 bg-white px-8 py-2 font-bold text-black hover:bg-green-400 hover:text-black focus:bg-green-400 focus:text-black'
+																	className='w-32 h-10 rounded border-2 border-green-400 bg-white px-8 py-2 font-bold text-black hover:bg-green-400 hover:text-black focus:bg-green-400 focus:text-black ease-linear transition-all duration-150'
 																>
 																	{game.PointSpread}
 																</button>
@@ -99,7 +99,7 @@ export default function Games() {
 																	onClick={handlePick}
 																	name={`${game.HomeTeam} (${game.HomeTeamMoneyLine})`}
 																	type='button'
-																	className='w-32 h-10 rounded border-2 border-green-400 bg-white px-8 py-2 font-bold text-black hover:bg-green-400 hover:text-black focus:bg-green-400 focus:text-black'
+																	className='w-32 h-10 rounded border-2 border-green-400 bg-white px-8 py-2 font-bold text-black hover:bg-green-400 hover:text-black focus:bg-green-400 focus:text-black ease-linear transition-all duration-150'
 																>
 																	{game.HomeTeamMoneyLine}
 																</button>
@@ -109,7 +109,7 @@ export default function Games() {
 																	onClick={handlePick}
 																	name={`${game.HomeTeam} (${game.PointSpread})`}
 																	type='button'
-																	className='w-32 h-10 rounded border-2 border-green-400 bg-white px-8 py-2 font-bold text-black hover:bg-green-400 hover:text-black focus:bg-green-400 focus:text-black'
+																	className='w-32 h-10 rounded border-2 border-green-400 bg-white px-8 py-2 font-bold text-black hover:bg-green-400 hover:text-black focus:bg-green-400 focus:text-black ease-linear transition-all duration-150'
 																>
 																	{game.PointSpread}
 																</button>

@@ -1,9 +1,11 @@
 import Link from 'next/link';
 import { useAuth } from '../lib/auth';
-import { createContext, useContext, useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export default function Nav() {
-	const { user, view, signOut } = useAuth();
+	const { user, signOut } = useAuth();
+	const [navToggle, setNavToggle] = useState(false);
+
 	return (
 		<div className='bg-black w-[100%] h-[5%]'>
 			<div className='max-w-7xl mx-auto px-2 sm:px-6 lg:px-8'>
@@ -12,22 +14,22 @@ export default function Nav() {
 						<div className='hidden sm:block sm:ml-6'>
 							<div className='flex space-x-4'>
 								<Link href='/'>
-									<a className='flex items-center text-2xl font-bold font-black text-green-400'>
+									<a className='flex items-center text-2xl font-bold text-green-400'>
 										Game<span className='text-white'>Picks</span>
 									</a>
 								</Link>
 								<Link href='/games'>
-									<a className='text-white hover:bg-black hover:text-white px-3 py-2 rounded-sm font-medium hover:outline'>
+									<a className='text-white hover:text-green-400 px-3 py-2 rounded-sm font-medium hover:outline'>
 										Games
 									</a>
 								</Link>
 								<Link href='/leaderboard'>
-									<a className='text-white hover:bg-black hover:text-white px-3 py-2 rounded-sm font-medium hover:outline'>
+									<a className='text-white hover:text-green-400 px-3 py-2 rounded-sm font-medium hover:outline'>
 										Leaderboard
 									</a>
 								</Link>
-								<Link href='/channels.[id]'>
-									<a className='text-white hover:bg-black hover:text-white px-3 py-2 rounded-sm font-medium hover:outline'>
+								<Link href='/channels/1'>
+									<a className='text-white hover:text-green-400 px-3 py-2 rounded-sm font-medium hover:outline'>
 										Chat
 									</a>
 								</Link>
@@ -40,12 +42,11 @@ export default function Nav() {
 									)}
 
 									{user && (
-										<div className='flex space-x-8  right-0 h-9'>
-											 
-											<div className='relative w-10 h-10 overflow-hidden rounded-full ring-white ring-1 bg-green-400'>
-												<Link href='/profile'>
+										<div className='flex space-x-8 right-0 h-9'>
+											<button onClick={() => setNavToggle(!navToggle)}>
+												<div className='relative w-10 h-10 overflow-hidden rounded-full hover:ring-white hover:ring-2 bg-green-400 shadow-lg'>
 													<svg
-														className='absolute w-12 h-12 text-black -left-1'
+														className='absolute w-12 h-15 text-black -left-1'
 														fill='currentColor'
 														viewBox='0 0 20 20'
 														xmlns='http://www.w3.org/2000/svg'
@@ -54,17 +55,30 @@ export default function Nav() {
 															fill-rule='evenodd'
 															d='M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z'
 															clip-rule='evenodd'
-														></path>
+														/>
 													</svg>
-												</Link>
-											</div>
-											<button
-												type='button'
-												className='w-24 rounded-sm  py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline- hover:text-white hover:bg-black hover:outline font-medium'
-												onClick={signOut}
-											>
-												Sign Out
+												</div>
 											</button>
+											{navToggle && (
+												<div className='origin-top-right absolute -right-14 my-14 w-40 rounded-md bg-black divide-y divide-grey text-center'>
+													<p className='text-xs py-4 text-white'>
+														Logged in as: {user?.email}
+													</p>
+
+													<Link href='/profile'>
+														<a className='text-sm py-4 font-bold block text-white'>
+															My Account
+														</a>
+													</Link>
+
+													<div
+														className='text-sm py-4 font-bold block  text-white'
+														onClick={signOut}
+													>
+														Sign Out
+													</div>
+												</div>
+											)}
 										</div>
 									)}
 								</div>

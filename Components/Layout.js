@@ -1,11 +1,10 @@
 import Link from 'next/link';
-import { useContext } from 'react';
 import { useAuth } from '../lib/auth';
 import { addChannel, deleteChannel } from '../lib/store';
 import TrashIcon from './TrashIcon';
 
 export default function Layout(props) {
-	const { user, userRoles } = useAuth();
+	const { user } = useAuth();
 
 	const slugify = text => {
 		return text
@@ -42,7 +41,7 @@ export default function Layout(props) {
 					</div>
 					<hr className='m-2' />
 					<div className='p-2 flex flex-col space-y-10'>
-						<h6 className='text-xs'>Logged in as: {user?.email}</h6>
+						<h6 className='text-xs'>{user?.email}</h6>
 
 						<button
 							className='bg-green-400 hover:bg-green-300 text-black font-semibold py-2 px-4 rounded w-full transition duration-150'
@@ -60,7 +59,6 @@ export default function Layout(props) {
 								key={x.id}
 								isActiveChannel={x.id === props.activeChannelId}
 								user={user}
-								userRoles={userRoles}
 							/>
 						))}
 					</ul>
@@ -73,7 +71,7 @@ export default function Layout(props) {
 	);
 }
 
-const SidebarItem = ({ channel, isActiveChannel, user, userRoles }) => (
+const SidebarItem = ({ channel, isActiveChannel }) => (
 	<>
 		<li className='flex items-center justify-between'>
 			<Link href='/channels/[id]' as={`/channels/${channel.id}`}>

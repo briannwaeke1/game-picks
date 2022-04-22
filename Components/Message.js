@@ -1,12 +1,7 @@
-import { useContext } from 'react';
-import UserContext from '../lib/UserContext';
 import { deleteMessage } from '../lib/store';
 import TrashIcon from './TrashIcon';
-import { useAuth } from '../lib/auth';
 
 const Message = ({ message }) => {
-	const { user, userRoles } = useAuth();
-
 	return (
 		<div className='py-4 flex items-center space-x-4'>
 			<div className='text-white w-4'>

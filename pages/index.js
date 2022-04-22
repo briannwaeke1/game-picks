@@ -1,11 +1,10 @@
 import Nav from '../Components/Nav';
 import { useAuth, VIEWS } from '../lib/auth';
-import { Auth, Button, Typography } from '@supabase/ui';
+import { Auth } from '@supabase/ui';
 import { supabase } from '../lib/client';
-import Link from 'next/link';
 
 export default function Home() {
-	const { user, view, signOut } = useAuth();
+	const { user, view } = useAuth();
 
 	if (view === VIEWS.UPDATE_PASSWORD) {
 		return (
@@ -25,26 +24,20 @@ export default function Home() {
 				<Nav />
 			</div>
 			{user && (
-				<>
-					<div className='flex flex-col items-center justify-center min-h-screen py-2'>
-						<main className='flex flex-col items-center justify-center flex-1 w-full px-8 text-center sm:px-20'>
-							<div className='inline-flex flex-col w-full max-w-sm mt-8 space-y-8'>
-								<Typography.Text>Signed in: {user.email}</Typography.Text>
-								<code className='highlight'>{user.role}</code>
-
-								<Link href='/profile'>
-									<Button block>Go to Profile</Button>
-								</Link>
-
-								<Button block onClick={signOut}>
-									Sign Out
-								</Button>
-							</div>
-						</main>
-					</div>
-				</>
+				<div className='flex items-center justify-center min-h-screen'>
+					<h2 className='text-black text-3xl'>
+						Welcome To <span className='text-green-400'>Game</span>
+						Picks
+					</h2>
+				</div>
 			)}
-			{!user && <Auth view={view} supabaseClient={supabase} />}
+			{!user && (
+				<div className='flex flex-col items-center justify-center min-h-screen py-2'>
+					<div className='inline-flex flex-col w-full max-w-sm mt-8 space-y-8'>
+						<Auth view={view} supabaseClient={supabase} />
+					</div>
+				</div>
+			)}
 		</>
 	);
 }

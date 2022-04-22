@@ -9,7 +9,7 @@ import { useStore, addMessage } from '../../lib/store';
 const ChannelsPage = props => {
 	const router = useRouter();
 	const messagesEndRef = useRef(null);
-	const { user, userRoles, signOut } = useAuth();
+	const { user } = useAuth();
 
 	// Else load up the page
 	const { id: channelId } = router.query;
