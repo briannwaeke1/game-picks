@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useRef } from 'react';
 import useSWR from 'swr';
 import BetSlip from './BetSlip';
+import { addToBetslip } from '../redux/slices/betslip.slice';
+import { useDispatch } from 'react-redux';
 
-export default function GameCard(props) {
-	const [slip, setSlip] = useState([]);
-
-	const removePick = id => setPick(el.filter(el => el.id !== id));
+export default function GameCard({ id }) {
+	const dispatch = useDispatch();
+	const buttonElement = useRef();
 
 	const handlePick = e => {
-		let pickValue = e.target.value;
-		setSlip([...slip, pickValue]);
+		const id = e.target.id;
+		console.log(id);
+		dispatch(addToBetslip(id));
 	};
 
 	const fetcher = url => fetch(url).then(res => res.json());
@@ -87,6 +89,8 @@ export default function GameCard(props) {
 													<td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-center'>
 														<button
 															onClick={handlePick}
+															ref={buttonElement}
+															id={`${matchup.AwayTeam} (${matchup.AwayTeamMoneyLine})`}
 															value={`${matchup.AwayTeam} (${matchup.AwayTeamMoneyLine})`}
 															type='button'
 															className='w-24 h-10 rounded border-2 border-green-400 bg-white px-8 py-2 font-bold text-black hover:bg-green-400 hover:text-black focus:bg-green-400 focus:text-black ease-linear transition-all duration-150 '
@@ -96,6 +100,7 @@ export default function GameCard(props) {
 													</td>
 													<td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-center'>
 														<button
+															id={`${matchup.AwayTeam} (${matchup.PointSpread})`}
 															onClick={handlePick}
 															value={`${matchup.AwayTeam} (${matchup.PointSpread})`}
 															type='button'
@@ -113,6 +118,7 @@ export default function GameCard(props) {
 														<button
 															onClick={handlePick}
 															value={`${matchup.HomeTeam} (${matchup.HomeTeamMoneyLine})`}
+															id={`${matchup.HomeTeam} (${matchup.HomeTeamMoneyLine})`}
 															type='button'
 															className='w-24 h-10 rounded border-2 border-green-400 bg-white px-8 py-2 font-bold text-black hover:bg-green-400 hover:text-black focus:bg-green-400 focus:text-black ease-linear transition-all duration-150'
 														>
@@ -122,6 +128,7 @@ export default function GameCard(props) {
 													<td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-center'>
 														<button
 															onClick={handlePick}
+															id={`${matchup.HomeTeam} (${matchup.PointSpread})`}
 															value={`${matchup.HomeTeam} (${matchup.PointSpread})`}
 															type='button'
 															className='w-24 h-10 rounded border-2 border-green-400 bg-white px-8 py-2 font-bold text-black hover:bg-green-400 hover:text-black focus:bg-green-400 focus:text-black ease-linear transition-all duration-150'
@@ -140,7 +147,7 @@ export default function GameCard(props) {
 				})}
 			</ul>
 			<div className='w-1/4 px-2'>
-				<BetSlip slip={slip} />
+				<BetSlip />
 			</div>
 		</div>
 	);

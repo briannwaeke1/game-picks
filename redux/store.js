@@ -1,12 +1,34 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { createWrapper } from 'next-redux-wrapper';
+import { betslipReducer } from './slices/betslip.slice';
+import storage from 'redux-persist/lib/storage';
+import { combineReducers } from 'redux';
+import {
+	persistReducer,
+	FLUSH,
+	REHYDRATE,
+	PAUSE,
+	PERSIST,
+	PURGE,
+	REGISTER
+} from 'redux-persist';
 
-import betslipReducer from './betSlipSlice';
+const persistConfig = {
+	key: 'betslip',
+	storage
+};
 
-const makeStore = () =>
-	configureStore({
-		reducer: { betslip: betslipReducer },
-		devTools: true
-	});
+const reducers = combineReducers({ betslip: betslipReducer });
 
-export const wrapper = createWrapper(makeStore, { debug: true });
+const persistedReducer = persistReducer(persistConfig, reducers);
+
+const store = configureStore({
+	reducer: persistedReducer,
+	middleware: getDefaultMiddleware =>
+		getDefaultMiddleware({
+			serializableCheck: {
+				ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
+			}
+		})
+});
+
+export default store;
