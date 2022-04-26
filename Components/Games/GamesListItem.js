@@ -18,21 +18,25 @@ const GamesListItem = () => {
 	}
 
 	return (
-		<>
+		<div className='relative flex flex-col'>
 			<ul>
 				{data
 					? data.map(item => {
 							return (
-								<div className='card'>
+								<div className='max-w-screen-lg h-48 m-4 p-6 bg-white rounded shadow-lg ring-2 ring-blue-700/50 lg:max-w-md cursor-pointer hover:shadow-xl hover:border-opacity-0 transform hover:-translate-y-1 transition-all duration-200'>
 									<li key={item.GameID}>
-										<div className='text-center'>{item.Name}</div>
+										<section className='card-header'>
+											<h1 className='text-md font-sans font-semibold text-center'>
+												{item.Name}
+											</h1>
+										</section>
 									</li>
 								</div>
 							);
 					  })
 					: null}
 			</ul>
-		</>
+		</div>
 	);
 };
 

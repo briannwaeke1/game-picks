@@ -1,36 +1,82 @@
-import React from 'react';
 import Link from 'next/link';
-import NavbarItem from './NavbarItem';
-import NavbarSection from './NavbarSection';
-import { Auth, Typography } from '@supabase/ui';
-import { supabase } from '../../lib/client';
+import React, { useState } from 'react';
 
-const Navbar = ({ children }) => {
-	const { user } = Auth.useUser();
-	const { Text } = Typography;
+const Navbar = () => {
+	const [toggle, setToggle] = useState(false);
+
 	return (
-		<nav className='w-auto py-8 px-5 pb-2 sm:pb-8 shadow-lg flex flex-col sm:flex-row justify-between items-center'>
-			<NavbarSection>
-				<div className='pr-4 text-base'>
-					<Link href='/'>
-						<a className='self-center font-bold text-green-400'>
+		<nav class='container flex justify-around py-8 mx-auto bg-white'>
+			<div class='flex items-center'>
+				<Link href='/'>
+					<a>
+						<h3 class='text-3xl font-semibold tracking-wide text-blue-600'>
 							Game<span className='text-black'>Picks</span>
-						</a>
-					</Link>
-				</div>
-				<NavbarItem text='My Account' url='/myaccount' active={false} />
-				<NavbarItem text='Leaderboard' url='/leaderboard' active={false} />
-			</NavbarSection>
-			<NavbarSection>
-				<div className='pr-16 text-base'>
-					<Text>Signed in: {user.email}</Text>
-				</div>
-				<div className='self-center'>
-					<button className='text-base' onClick={() => supabase.auth.signOut()}>
-						Sign out
+						</h3>
+					</a>
+				</Link>
+			</div>
+			<div class='items-center hidden space-x-8 lg:flex'>
+				<div className='relative'>
+					<button onClick={() => setToggle(!toggle)}>
+						<div className='p-2 rounded-full ring-2 ring-blue-600 bg-white'>
+							<svg
+								xmlns='http://www.w3.org/2000/svg'
+								class='w-6 h-6 text-black'
+								fill='currenColor'
+								viewBox='0 0 24 24'
+								stroke='currentColor'
+							>
+								<path
+									stroke-linecap='round'
+									stroke-linejoin='round'
+									stroke-width='2'
+									d='M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z'
+								/>
+							</svg>
+						</div>
 					</button>
+					{toggle && (
+						<div className='absolute w-36'>
+							<div className='w-full bg-white rounded-lg shadow-lg'>
+								<ul className='divide-y-2 divide-gray-200'>
+									<li className='flex justify-between p-3 hover:bg-blue-600 hover:text-black'>
+										Hello, user!
+									</li>
+									<div className='flex justify-between p-3 hover:bg-blue-600 hover:text-black cursor-pointer'>
+										<Link href='/myaccount'>
+											<a>My Account</a>
+										</Link>
+									</div>
+									<div className='flex justify-between p-3 hover:bg-blue-600 hover:text-black cursor-pointer'>
+										<Link href='/leaderboard'>
+											<a>Leaderboard</a>
+										</Link>
+									</div>
+									<div className='flex items-center justify-between p-3 hover:bg-blue-600 cursor-pointer'>
+										<button onClick={() => supabase.auth.signOut()}>
+											Sign Out
+										</button>
+										<svg
+											xmlns='http://www.w3.org/2000/svg'
+											className='w-6 h-6'
+											fill='none'
+											viewBox='0 0 24 24'
+											stroke='currentColor'
+										>
+											<path
+												stroke-linecap='round'
+												stroke-linejoin='round'
+												stroke-width='2'
+												d='M17 8l4 4m0 0l-4 4m4-4H3'
+											/>
+										</svg>
+									</div>
+								</ul>
+							</div>
+						</div>
+					)}
 				</div>
-			</NavbarSection>
+			</div>
 		</nav>
 	);
 };
