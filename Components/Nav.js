@@ -12,12 +12,7 @@ export default function Nav() {
 				<div className='relative flex items-center justify-between h-16'>
 					<div className='flex-1 flex items-center justify-center sm:items-stretch sm:justify-start'>
 						<div className='hidden sm:block sm:ml-6'>
-							<div className='flex space-x-4'>
-								<Link href='/'>
-									<a className='flex items-center text-2xl font-bold text-green-400'>
-										Game<span className='text-white'>Picks</span>
-									</a>
-								</Link>
+							
 								<Link href='/games'>
 									<a className='text-white hover:text-green-400 px-3 py-2 rounded-sm font-medium hover:outline'>
 										Games

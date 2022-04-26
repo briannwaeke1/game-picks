@@ -1,13 +1,11 @@
 import React, { useRef } from 'react';
 import useSWR from 'swr';
-import BetSlip from './BetSlip';
+import BetSlip from './BetSlip2';
 import { addToBetslip } from '../redux/slices/betslip.slice';
 import { useDispatch } from 'react-redux';
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function GameCard({ id }) {
-	const dispatch = useDispatch();
-	const buttonElement = useRef();
-
 	const handlePick = e => {
 		const id = e.target.id;
 		console.log(id);
@@ -71,10 +69,10 @@ export default function GameCard({ id }) {
 											<thead className='thead-light'>
 												<tr>
 													<th className='px-4 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center'>
-														Matchup
+														Winner
 													</th>
 													<th className='px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center'>
-														Moneyline
+														O/U
 													</th>
 													<th className='px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center min-w-140-px'>
 														Spread
