@@ -1,10 +1,10 @@
 import Navbar from '../Components/Navbar/Navbar';
 
-export default function LeaderboardPage() {
+export default function ChatPage() {
 	return (
 		<>
 			<Navbar />
-			<h2>Leaderboard Page</h2>
+			<h2>Chat Page</h2>
 		</>
 	);
 }

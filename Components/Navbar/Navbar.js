@@ -1,84 +1,92 @@
-import Link from 'next/link';
-import React, { useState } from 'react';
+/* This example requires Tailwind CSS v2.0+ */
+import { Disclosure } from '@headlessui/react';
+import { MenuIcon, XIcon } from '@heroicons/react/outline';
 
-const Navbar = () => {
-	const [toggle, setToggle] = useState(false);
+const navigation = [
+	{ name: 'Sports', href: '#', current: true },
+	{ name: 'Leaderboard', href: '/leaderboard', current: false },
+	{ name: 'Chat', href: '/chat', current: false },
+	{ name: 'About', href: '/about', current: false }
+];
 
+function classNames(...classes) {
+	return classes.filter(Boolean).join(' ');
+}
+
+export default function Navbar() {
 	return (
-		<nav class='container flex justify-around py-8 mx-auto bg-white'>
-			<div class='flex items-center'>
-				<Link href='/'>
-					<a>
-						<h3 class='text-3xl font-semibold tracking-wide text-blue-600'>
-							Game<span className='text-black'>Picks</span>
-						</h3>
-					</a>
-				</Link>
-			</div>
-			<div class='items-center hidden space-x-8 lg:flex'>
-				<div className='relative'>
-					<button onClick={() => setToggle(!toggle)}>
-						<div className='p-2 rounded-full ring-2 ring-blue-600 bg-white'>
-							<svg
-								xmlns='http://www.w3.org/2000/svg'
-								class='w-6 h-6 text-black'
-								fill='currenColor'
-								viewBox='0 0 24 24'
-								stroke='currentColor'
-							>
-								<path
-									stroke-linecap='round'
-									stroke-linejoin='round'
-									stroke-width='2'
-									d='M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z'
-								/>
-							</svg>
-						</div>
-					</button>
-					{toggle && (
-						<div className='absolute w-36'>
-							<div className='w-full bg-white rounded-lg shadow-lg'>
-								<ul className='divide-y-2 divide-gray-200'>
-									<li className='flex justify-between p-3 hover:bg-blue-600 hover:text-black'>
-										Hello, user!
-									</li>
-									<div className='flex justify-between p-3 hover:bg-blue-600 hover:text-black cursor-pointer'>
-										<Link href='/myaccount'>
-											<a>My Account</a>
-										</Link>
+		<Disclosure as='nav' className='bg-white'>
+			{({ open }) => (
+				<>
+					<div className='min-w-7xl mx-auto px-2 sm:px-6 lg:px-8 bg-white border-b border-black-50'>
+						<div className='relative flex items-center justify-between h-16 md:mx-20 mx-0'>
+							<div className='absolute inset-y-0 left-0 flex items-center sm:hidden'>
+								{/* Mobile menu button*/}
+								<Disclosure.Button className='inline-flex items-center justify-center p-2 rounded-md text-black hover:text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white'>
+									<span className='sr-only'>Open main menu</span>
+									{open ? (
+										<XIcon className='block h-6 w-6' aria-hidden='true' />
+									) : (
+										<MenuIcon className='block h-6 w-6' aria-hidden='true' />
+									)}
+								</Disclosure.Button>
+							</div>
+							<div className='flex-1 flex items-center justify-center sm:items-stretch sm:justify-start'>
+								<div className='flex-shrink-0 flex items-center '>
+									<h1 className='font-semibold text-xl cursor-pointer '>
+										Game<span className='text-blue-500'>Picks</span>
+									</h1>
+								</div>
+								<div className='hidden sm:block sm:ml-6 md:ml-60'>
+									<div className='flex space-x-4'>
+										{navigation.map(item => (
+											<a
+												key={item.name}
+												href={item.href}
+												className={classNames(
+													item.current
+														? 'bg-blue-500 shadow-lg text-white'
+														: 'text-gray-300 hover:shadow-lg hover:bg-blue-500 hover:text-white',
+													'px-3 py-2 rounded-md text-sm font-medium'
+												)}
+												aria-current={item.current ? 'page' : undefined}
+											>
+												{item.name}
+											</a>
+										))}
 									</div>
-									<div className='flex justify-between p-3 hover:bg-blue-600 hover:text-black cursor-pointer'>
-										<Link href='/leaderboard'>
-											<a>Leaderboard</a>
-										</Link>
-									</div>
-									<div className='flex items-center justify-between p-3 hover:bg-blue-600 cursor-pointer'>
-										<button onClick={() => supabase.auth.signOut()}>
-											Sign Out
-										</button>
-										<svg
-											xmlns='http://www.w3.org/2000/svg'
-											className='w-6 h-6'
-											fill='none'
-											viewBox='0 0 24 24'
-											stroke='currentColor'
-										>
-											<path
-												stroke-linecap='round'
-												stroke-linejoin='round'
-												stroke-width='2'
-												d='M17 8l4 4m0 0l-4 4m4-4H3'
-											/>
-										</svg>
-									</div>
-								</ul>
+								</div>
+							</div>
+							<div className='absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0'>
+								<button className='px-3 py-2 rounded-md text-sm font-medium border border-blue-100 text-blue-500 hover:bg-blue-500 hover:shadow-lg  hover:text-white'>
+									Sign up
+								</button>
 							</div>
 						</div>
-					)}
-				</div>
-			</div>
-		</nav>
-	);
-};
+					</div>
 
-export default Navbar;
+					<Disclosure.Panel className='sm:hidden'>
+						<div className='px-2 pt-2 pb-3 space-y-1'>
+							{navigation.map(item => (
+								<Disclosure.Button
+									key={item.name}
+									as='a'
+									href={item.href}
+									className={classNames(
+										item.current
+											? 'bg-blue-500 shadow-lg text-white'
+											: 'text-black hover:bg-blue-500 hover:shadow-lg hover:text-white',
+										'block px-3 py-2 rounded-md text-base font-medium'
+									)}
+									aria-current={item.current ? 'page' : undefined}
+								>
+									{item.name}
+								</Disclosure.Button>
+							))}
+						</div>
+					</Disclosure.Panel>
+				</>
+			)}
+		</Disclosure>
+	);
+}

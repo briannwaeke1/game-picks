@@ -1,7 +1,7 @@
 import React from 'react';
 import useSWR from 'swr';
 
-import TeamLogo from '../TeamLogo';
+import TeamLogo from './TeamLogo';
 
 const GamesListItem = () => {
 	const fetcher = url => fetch(url).then(res => res.json());
