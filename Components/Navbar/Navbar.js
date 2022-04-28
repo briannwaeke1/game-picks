@@ -1,12 +1,10 @@
-/* This example requires Tailwind CSS v2.0+ */
 import { Disclosure } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 
 const navigation = [
-	{ name: 'Sports', href: '#', current: true },
+	{ name: 'Upcoming Games', href: '/', current: true },
 	{ name: 'Leaderboard', href: '/leaderboard', current: false },
-	{ name: 'Chat', href: '/chat', current: false },
-	{ name: 'About', href: '/about', current: false }
+	{ name: 'My Profile', href: '/profile', current: false }
 ];
 
 function classNames(...classes) {
@@ -14,8 +12,9 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
+	const [showBetSlip, setShowBetSlip] = useState(false);
 	return (
-		<Disclosure as='nav' className='bg-white'>
+		<Disclosure as='nav' className='sticky top-0 bg-white'>
 			{({ open }) => (
 				<>
 					<div className='min-w-7xl mx-auto px-2 sm:px-6 lg:px-8 bg-white border-b border-black-50'>
@@ -33,7 +32,7 @@ export default function Navbar() {
 							</div>
 							<div className='flex-1 flex items-center justify-center sm:items-stretch sm:justify-start'>
 								<div className='flex-shrink-0 flex items-center '>
-									<h1 className='font-semibold text-xl cursor-pointer '>
+									<h1 className='font-semibold text-2xl cursor-pointer '>
 										Game<span className='text-blue-500'>Picks</span>
 									</h1>
 								</div>
@@ -58,9 +57,17 @@ export default function Navbar() {
 								</div>
 							</div>
 							<div className='absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0'>
-								<button className='px-3 py-2 rounded-md text-sm font-medium border border-blue-100 text-blue-500 hover:bg-blue-500 hover:shadow-lg  hover:text-white'>
-									Sign up
+								<button className='px-6 py-2 rounded-md text-sm font-medium border border-blue-100 text-blue-500 hover:bg-blue-500 hover:shadow-xl  hover:text-white'>
+									Login
 								</button>
+								<div className='absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0'>
+									<button
+										onClick={() => setShowBetSlip(!showBetSlip)}
+										className='px-6 py-2 rounded-md text-sm font-bold border bg-green-400 border-green-500 text-black hover:bg-green-400 hover:shadow-xl  hover:text-black'
+									>
+										Bet Slip
+									</button>
+								</div>
 							</div>
 						</div>
 					</div>

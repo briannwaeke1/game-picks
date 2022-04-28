@@ -3,9 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-	.card-header {
-	}
-
 	.logo {
 		min-width: 100px;
 		max-width: 100px;
@@ -16,5 +13,9 @@
 		min-height: 100px;
 		max-height: 100px;
 		margin: 2rem;
+	}
+
+	main {
+		@apply bg-gray-100 max-h-screen min-h-screen;
 	}
 }
