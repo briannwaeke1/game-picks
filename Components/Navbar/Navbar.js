@@ -1,5 +1,6 @@
 import { Disclosure } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
+import React, { useState } from 'react';
 
 const navigation = [
 	{ name: 'Upcoming Games', href: '/', current: true },
@@ -63,7 +64,7 @@ export default function Navbar() {
 								<div className='absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0'>
 									<button
 										onClick={() => setShowBetSlip(!showBetSlip)}
-										className='px-6 py-2 rounded-md text-sm font-bold border bg-green-400 border-green-500 text-black hover:bg-green-400 hover:shadow-xl  hover:text-black'
+										className='px-6 py-2 rounded-md text-sm font-bold border bg-green-400 border-green-400 text-black hover:bg-green-400 hover:shadow-xl  hover:text-black'
 									>
 										Bet Slip
 									</button>
