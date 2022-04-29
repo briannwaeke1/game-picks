@@ -1,5 +1,5 @@
 function HomePage() {
-	return <div>GamePicks</div>;
+	return <div className='main'></div>;
 }
 
 export default HomePage;

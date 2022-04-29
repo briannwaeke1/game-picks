@@ -12,7 +12,7 @@ function classNames(...classes) {
 	return classes.filter(Boolean).join(' ');
 }
 
-export default function Navbar() {
+const Navbar = () => {
 	const [showBetSlip, setShowBetSlip] = useState(false);
 	return (
 		<Disclosure as='nav' className='sticky top-0 bg-white'>
@@ -59,7 +59,7 @@ export default function Navbar() {
 							</div>
 							<div className='absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0'>
 								<button className='px-6 py-2 rounded-md text-sm font-medium border border-blue-100 text-blue-500 hover:bg-blue-500 hover:shadow-xl  hover:text-white'>
-									Login
+									Log In
 								</button>
 								<div className='absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0'>
 									<button
@@ -97,4 +97,6 @@ export default function Navbar() {
 			)}
 		</Disclosure>
 	);
-}
+};
+
+export default Navbar;
