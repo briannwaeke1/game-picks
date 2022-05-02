@@ -1,6 +1,6 @@
 import React from 'react';
 
-const GamesListContainer = () => {
+const GamesListHeader = () => {
 	let date = new Date().toDateString();
 	return (
 		<div className='container mx-auto w-5/6 sm:w-2/3 h-full'>
@@ -9,6 +9,37 @@ const GamesListContainer = () => {
 					<h2 className='text-black text-lg font-bold'>
 						Upcoming Games - {date}
 					</h2>
+				</div>
+				<div className='lg:hidden w-full relative mt-2 md:mt-4'>
+					<div className='absolute inset-0 m-auto mr-4 z-0 w-6 h-6'>
+						<svg
+							xmlns='http://www.w3.org/2000/svg'
+							className='icon icon-tabler icon-tabler-selector'
+							width={24}
+							height={24}
+							viewBox='0 0 24 24'
+							strokeWidth='1.5'
+							stroke='#a0aec0'
+							fill='none'
+							strokeLinecap='round'
+							strokeLinejoin='round'
+						>
+							<path stroke='none' d='M0 0h24v24H0z' />
+							<polyline points='8 9 12 5 16 9' />
+							<polyline points='16 15 12 19 8 15' />
+						</svg>
+					</div>
+					<select
+						aria-label='Selected tab'
+						className='form-select block w-full p-3 border border-black-50 rounded text-black appearance-none bg-transparent relative z-10'
+					>
+						<option className='text-sm text-black' selected>
+							NBA
+						</option>
+						<option className='text-sm text-black'>MLB</option>
+						<option className='text-sm text-black'>NFL</option>
+						<option className='text-sm text-black'>EPL</option>
+					</select>
 				</div>
 				<ul className='hidden lg:flex items-center lg:mt-6 xl:mt-0'>
 					<li className='cursor-pointer font-normal flex justify-center items-center py-2 px-4 rounded mr-4 xl:mr-0 xl:ml-0 bg-blue-500 text-white text-sm'>
@@ -29,4 +60,4 @@ const GamesListContainer = () => {
 	);
 };
 
-export default GamesListContainer;
+export default GamesListHeader;
