@@ -6,9 +6,7 @@ const GamesListHeader = () => {
 		<div className='container mx-auto w-5/6 sm:w-2/3 h-full'>
 			<div className='w-full bg-white py-5 flex flex-col xl:flex-row items-start xl:items-center justify-between px-5 xl:px-10 shadow-xl rounded'>
 				<div className='mb-4 sm:mb-0 md:mb-0 lg:mb-0 xl:mb-0 lg:w-1/2'>
-					<h2 className='text-black text-lg font-bold'>
-						Upcoming Games - {date}
-					</h2>
+					<h2 className='text-black text-lg font-bold'>{date}</h2>
 				</div>
 				<div className='lg:hidden w-full relative mt-2 md:mt-4'>
 					<div className='absolute inset-0 m-auto mr-4 z-0 w-6 h-6'>

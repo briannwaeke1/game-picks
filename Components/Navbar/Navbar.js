@@ -14,7 +14,8 @@ function classNames(...classes) {
 }
 
 const Navbar = () => {
-	const [showBetSlip, setShowBetSlip] = useState(false);
+	const [modalToggle, setModalToggle] = useState(false);
+
 	return (
 		<Disclosure as='nav' className='sticky top-0 bg-white'>
 			{({ open }) => (
@@ -58,21 +59,21 @@ const Navbar = () => {
 									</div>
 								</div>
 							</div>
+
+							<div className='absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0'>
+								<button className='px-6 py-2 rounded text-sm font-bold border bg-green-500 text-white hover:shadow-lg'>
+									Bet Slip
+								</button>
+							</div>
 							<div className='absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0'>
 								<Link href='/signin' passHref>
-									<a className='px-6 py-2 rounded text-sm font-medium border border-blue-100 text-blue-500 hover:bg-blue-500 hover:shadow-xl hover:text-white'>
-										Log In
-									</a>
-								</Link>
-
-								<div className='absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0'>
-									<button
-										onClick={() => setShowBetSlip(!showBetSlip)}
-										className='px-6 py-2 rounded text-sm font-bold border bg-green-400 border-green-400 text-black hover:bg-green-400 hover:shadow-xl  hover:text-black'
+									<div
+										as='button'
+										className='px-6 py-2 rounded text-sm font-medium border border-blue-100 text-blue-500 hover:bg-blue-500 hover:shadow-lg hover:text-white'
 									>
-										Bet Slip
-									</button>
-								</div>
+										<a>Log In</a>
+									</div>
+								</Link>
 							</div>
 						</div>
 					</div>
