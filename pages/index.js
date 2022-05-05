@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import GamesListHeader from '~/components/games/games-list-header';
 import MatchupCard from '~/components/games/matchup-card';
+import GameOptions from '../components/games/game-options-toggle';
 
 const HomePage = props => {
 	const [games, setGames] = useState([{}]);
@@ -15,7 +16,7 @@ const HomePage = props => {
 	}, []);
 
 	const gamesList = games.map(game => (
-		<MatchupCard key={game.GameID} game={game} />
+		<GameOptions key={game.GameID} game={game} />
 	));
 
 	return (
