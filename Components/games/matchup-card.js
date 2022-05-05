@@ -3,7 +3,7 @@ import { RadioGroup } from '@headlessui/react';
 import toast, { Toaster } from 'react-hot-toast';
 
 const MatchupCard = props => {
-	const [selected, setSelected] = useState(null);
+	const [selected, setSelected] = useState();
 	const [awayTeam, setAwayTeam] = useState();
 	const [homeTeam, setHomeTeam] = useState();
 
@@ -18,7 +18,10 @@ const MatchupCard = props => {
 
 	return (
 		<>
-			<div className='container mx-auto my-5 w-1/2 h-full'>
+			<div
+				key={props.game.GameID}
+				className='container mx-auto my-5 w-1/2 h-full'
+			>
 				<div className='w-full bg-white flex flex-col xl:flex-row items-start justify-between px-10 py-10 shadow-xl rounded'>
 					<div className='w-full px-4 py-16'>
 						<div className='mx-auto w-full max-w-md'>

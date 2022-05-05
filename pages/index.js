@@ -8,7 +8,7 @@ const HomePage = props => {
 
 	useEffect(() => {
 		fetch(
-			'https://api.sportsdata.io/v3/nba/scores/json/GamesByDate/current?key=ce1cea60fa674f5ebb95719e856f2b47'
+			'https://api.sportsdata.io/v3/nba/scores/json/GamesByDate/2022-MAY-04?key=ce1cea60fa674f5ebb95719e856f2b47'
 		)
 			.then(res => res.json())
 			.then(data => setGames(data));
@@ -21,7 +21,6 @@ const HomePage = props => {
 	return (
 		<div className='main'>
 			<GamesListHeader />
-
 			{gamesList}
 		</div>
 	);

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BetSlipModal = () => {
+const BetSlipModal2 = () => {
 	return (
 		<div
 			className='w-full absolute z-10 right-0 h-full overflow-x-hidden transform translate-x-0 transition ease-in-out duration-700'
@@ -287,4 +287,3 @@ const BetSlipModal = () => {
 		</div>
 	);
 };
-export default BetSlipModal;

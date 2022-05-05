@@ -2,6 +2,7 @@ import { Disclosure } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Modal from '../bet-slip/bet-slip-modal';
 
 const navigation = [
 	{ name: 'Upcoming Games', href: '/', current: true },
@@ -13,9 +14,8 @@ function classNames(...classes) {
 	return classes.filter(Boolean).join(' ');
 }
 
-const Navbar = () => {
-	const [modalToggle, setModalToggle] = useState(false);
-
+const Navbar = props => {
+	const [openModal, setOpenModal] = useState(false);
 	return (
 		<Disclosure as='nav' className='sticky top-0 bg-white'>
 			{({ open }) => (
@@ -61,18 +61,22 @@ const Navbar = () => {
 							</div>
 
 							<div className='absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0'>
-								<button className='px-6 py-2 rounded text-sm font-bold border bg-green-500 text-white hover:shadow-lg'>
+								<button
+									onClick={() => setOpenModal(true)}
+									className='px-6 py-2 rounded text-sm font-bold border bg-green-500 text-white hover:shadow-lg'
+								>
 									Bet Slip
 								</button>
+								<Modal
+									openModal={openModal}
+									onClose={() => setOpenModal(false)}
+								></Modal>
 							</div>
 							<div className='absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0'>
 								<Link href='/signin' passHref>
-									<div
-										as='button'
-										className='px-6 py-2 rounded text-sm font-medium border border-blue-100 text-blue-500 hover:bg-blue-500 hover:shadow-lg hover:text-white'
-									>
+									<button className='px-6 py-2 rounded text-sm font-medium border border-blue-100 text-blue-500 hover:bg-blue-500 hover:shadow-lg hover:text-white'>
 										<a>Log In</a>
-									</div>
+									</button>
 								</Link>
 							</div>
 						</div>
